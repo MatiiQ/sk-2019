@@ -12,11 +12,11 @@ Wejściowe parametry sieci
 | Parametr | wartość | komentarz(opcionalny) |
 | ------------- |:-------------:| -----:|
 |   PC 1 |  
-| IP - address  | | |
+| IP - address  |10.0.2.15/24 | |
 | MASKA  | | |
 |   |  | |
 | PC 2  |  | |
-| IP - address  | | |
+| IP - address  |10.0.2.4/24 | |
 | MASKA  | | |
 
 Weryfikacja połączenia
@@ -82,9 +82,9 @@ Warto wiedzieć
 | Parametr | wartość | komentarz(opcionalny) |
 | ------------- |:-------------:| -----:|
 | Lokalizacja pliku z konfiguracją sieci| | |
-| UP -> Wyłączenie interfejsu sieciowego| | |
-| DOWN -> Włączenie interfejsu sieciowego| | |
-| Sprawdzenie obecnych parametrów | | |
+| UP -> Włączenie interfejsu sieciowego| |ifup |
+| DOWN -> Wyłączenie interfejsu sieciowego| |ifdown |
+| Sprawdzenie obecnych parametrów | |ip addr |
 | lista wszystkich interfejsów | | |
 | Które interfejsy jakie porty słuchają | | |
 
