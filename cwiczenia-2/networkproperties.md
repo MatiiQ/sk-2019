@@ -22,12 +22,12 @@ Wejściowe parametry sieci
 Weryfikacja połączenia
 
 Polecenie
-```
-```
+``curl -X POST -d '{"text": "Hello World"}' http://192.168.10.6:8888/chat``
+``curl -X POST -d '{"last_message_id":-1}' http://192.168.10.6:8888/messages``
 
 Efekt
-```
-```
+
+
 
 Statyczna konfiguracja parametrów połączenia
 Wejściowe parametry sieci
