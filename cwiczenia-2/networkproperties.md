@@ -87,4 +87,5 @@ Warto wiedzieć
 | Sprawdzenie obecnych parametrów | |ip addr |
 | lista wszystkich interfejsów | | |
 | Które interfejsy jakie porty słuchają | | |
+| Wyłączenie firewall | ``systemctl stop firewalld`` | | |
 
