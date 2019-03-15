@@ -3,7 +3,7 @@ Podłączenie 2 maszyn do switcha
 
 1. Utworzenie sieci NAT w globalnych ustawieniach VirtualBox o adresie ip 172.16.100.0/24 z wyłączonym DHCP
 2. Na obydwu maszynach dodanie adresów ip poleceniem ip addr add {ip} dev {nazwa}
--1 maszyna 172.16.100.10
+  1) maszyna 172.16.100.10
 -2 maszyna 172.16.100.11
 3. Zresetowanie interfejsu sieciowego na obydwu maszynach poleceniem ip link set {nazwa} dev down a następnie ip link set {nazwa} dev up
 4. Pingowanie odpowiadających adresów ip na obydwu maszynach
