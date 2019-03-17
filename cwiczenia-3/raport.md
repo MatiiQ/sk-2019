@@ -1,4 +1,4 @@
-#Podłączenie 2 maszyn do switcha
+Podłączenie 2 maszyn do switcha
 ---------------------------------
 
 1. Utworzenie sieci NAT w globalnych ustawieniach VirtualBox o adresie ip 172.16.100.0/24 z wyłączonym DHCP
@@ -13,7 +13,12 @@
 
 *************************************************
 
-#Komunikacja między 3 maszynami
+Komunikacja między 3 maszynami
 --------------------------------
 
-1.Stworzenie maszyny z systemem Windows
+1. Stworzenie maszyny z systemem Windows
+2. Dodanie adresu ip poleceniem ``netsh interface ip set address name="{name}" static 172.16.100.12/24``
+3. Włączenie httpchat na 1 maszynie
+4. Wysyłanie wiadomości z 2 maszyny poleceniem ``curl -X POST -d '{"text": "Hello World"}' http://{ip_address}:8888/chat``
+5. Pobieranie wiadomości na 2 maszynie poleceniem ``curl -X POST -d '{"last_message_id":-1}' http://{ip_address}:8888/messages``
+6. Włączenie przez przeglądarkę graficznej wersji httpchat podając w adresie ip 172.16.100.10:8888
