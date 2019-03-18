@@ -34,6 +34,14 @@ ip
 |               | ``ip link set enp0s3 down``    | wyłącz |
 |               | ``ip link set {nazwa} up``     | włącz |
 |   ``route``   |  | |
+|               | ``ip route show`` | pokazuje tablice routingu |
+|               | ``ip route get {ip}`` | którym interfejsem poleci pakiet|
+|               | ``ip route add default via {ip}`` | dodanie domyślnego adresu routingu |
+|               | ``ip route del {ip}`` | |
+|               | ``ip route add {ip} via {ip}`` | |
+|               | ``ip rotue add {ip} dev {nazwa}`` | |
+|               | ``echo 1 > /proc/sys/net/ipv4/ip_forward`` | włączanie forwardowania ip |
+|               | /etc/
 |   ``maddr``   |  | |
 |   ``neigh``   |  | |
 |   ``help``    |  | |
