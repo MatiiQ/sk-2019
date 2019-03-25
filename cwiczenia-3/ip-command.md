@@ -47,7 +47,10 @@ ip
 |   ``help``    |  | |
 
 **********************************
+statyczny konfig
+
 nano /etc/network/interfaces
+
 allow-hotplug enp0s3
 iface enp0s3 inet static
    address 192.168.100.1
