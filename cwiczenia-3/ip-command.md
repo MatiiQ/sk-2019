@@ -46,6 +46,22 @@ ip
 |   ``neigh``   |  | |
 |   ``help``    |  | |
 
+**********************************
+nano /etc/network/interfaces
+allow-hotplug enp0s3
+iface enp0s3 inet static
+   address 192.168.100.1
+   netmask 255.255.255.0
+ 
+auto enp0s8
+iface enp0s8 inet static
+   address 192.168.200.1
+   netmask 255.255.255.0
+   up ip route add 192.168.0.0/24 via 192.168.200.2
+   down ip route del 192.168.0.0/24
+zresetować
+**************************************
+
 Zadanie
 ------------
 
