@@ -18,6 +18,8 @@ Zadanie
    * Wykonaj konfigurację translacji adresów tak aby udostępnic komunikację z siecią internet dla ``PC-2``
    * Przygotuj dokumentację powyższego procesu
    *  **czy istnieje różnica keżeli adres eth0 statyczny/dynamiczny? Jeżeli to jaka?**
+  
+--------
    
    *iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
    *iptables -A FORWARD -i enp0s8 -j ACCEPT
