@@ -41,7 +41,7 @@ ip
 |               | ``ip route add {ip} via {ip}`` | |
 |               | ``ip rotue add {ip} dev {nazwa}`` | |
 |               | ``echo 1 > /proc/sys/net/ipv4/ip_forward`` | włączanie forwardowania ip |
-|               | /etc/
+|               | /etc/sysctl.d/99-sysctl.conf | odkomentować ipforwarding
 |   ``maddr``   |  | |
 |   ``neigh``   |  | |
 |   ``help``    |  | |
@@ -64,6 +64,8 @@ iface enp0s8 inet static
    down ip route del 192.168.0.0/24
 zresetować
 **************************************
+DNS
+/etc/resolv.conf
 
 Zadanie
 ------------
