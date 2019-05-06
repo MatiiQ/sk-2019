@@ -20,10 +20,10 @@ Zadanie
    *  **czy istnieje różnica keżeli adres eth0 statyczny/dynamiczny? Jeżeli to jaka?**
   
 --------
-   
-   *iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+ ```  
+   *iptables -t nat -A POSTROUTING -s {ip sieci} -o enp0s3 -j MASQUERADE
    *iptables -A FORWARD -i enp0s8 -j ACCEPT
-
+```
 
 ![zadanie 7](nat-2.svg)
 
@@ -35,6 +35,17 @@ Zadanie
     * Rozszerz architekturę o automatyczną konfigurację hostów w podsieciach ``192.168.64.192/27`` oraz ``172.16.95.216/29`` z wyykorzystaniem usługi ``DHCP``
     * Rozpocznij od zapoznania się z dokumentacją oraz instalacji programu ``isc-dhcp-server`` dla ``PC1``
 
+------------
+```install isc-dhcp-server
+nano /etc/default/isc-dhcp-server odkomentować ścieżki 
+nano /etc/dhcp/dhcp.conf - dopisać konfiguracje sieci :
+subnet {ip sieci} netmask {obliczyc} {
+ option domain-name-servers 8.8.8.8; 8.8.4.4;
+ option routers 192.168.64.193;
+ range 192.168.64.200 192.168.64.223;
+}
+systemctl restart isc-dhcp-server
+```
  
 
 Zadanie do domu
