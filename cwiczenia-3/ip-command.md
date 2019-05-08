@@ -47,6 +47,7 @@ ip
 |   ``help``    |  | |
 
 **********************************
+```
 statyczny konfig
 
 nano /etc/network/interfaces
@@ -63,6 +64,7 @@ iface enp0s8 inet static
    up ip route add 192.168.0.0/24 via 192.168.200.2
    down ip route del 192.168.0.0/24
 zresetować
+```
 **************************************
 DNS
 /etc/resolv.conf
