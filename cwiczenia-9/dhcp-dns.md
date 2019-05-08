@@ -37,6 +37,7 @@ Zadanie
 Przydatne polecenia
 -------------------
 
+option routers {ip} to jest to co route default via {ip}
 
 | komenda    |  przykład   | opis  |
 | ------------- |:-------------| :---------------| 
@@ -44,6 +45,7 @@ Przydatne polecenia
 |   ``dig``         | ``dig uek.krakow.pl``      | kwerenda do serwera dns |
 |                   |                            | wyczyść lokalny cache dns |   
 
+/etc/hosts - dodawanie wpsiów do dns
 
 Zadanie do domu
 ---------------
