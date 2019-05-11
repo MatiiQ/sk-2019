@@ -32,10 +32,10 @@ routing
 | ``PC2``  |  |
 | ``default`` | 192.168.0.1 | enp0s3 ``ip route add default via 192.168.0.1`` |
 
-w r2
+```w r2
 nie dodaje auto rutingu 192.168.100.0/24
 w r1 192.168.0.0/24 (to co jest jako drugie w pliku interfaces)
-co edytować żeby ip forward po reboocie było dalej 1
+```
 
 Zadanie
 ------------
