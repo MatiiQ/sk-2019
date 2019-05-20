@@ -44,6 +44,19 @@
 
 ```bash
 iptables -A -i <interface> -p <protocol (tcp/udp) -s <source> --dport <port> -j <target>
+
+dhclient -v {interfejs} - resetowanie żeby przyznało adresy
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT - akceptowanie komunikacji z portem 80(http)
+iptables -D -||- -||- - usuwa regułę
+
+ipatables-save > /etc/iptables.up.rules
+iptables-restore < /etc/iptables.up.rules
+dodać do /etc/network/interfaces
+post-up iptables-restore < /etc/iptables.up.rules (savować kolejne reguły trzeba ręcznie)
+
+żeby kolejne interfejsy wstawały przy boocie
+auto {interface}
+iface {interface} inet dhcp/static
 ```
 
 ### wykorzystanie
