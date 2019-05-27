@@ -36,7 +36,7 @@
   
 6. Dodanie reguły masquerade na PC0
   iptables -t nat -A POSTROUTING -s 172.22.128.0/19 -o enp0s3 -j MASQUERADE
-  -||- dla -s 172.22.144.0/23
+  to samo dla -s 172.22.144.0/23
   
 7. Dodanie adresów dns do PC1 i PC2 (opcjonalne)
   /etc/resolv.conf
