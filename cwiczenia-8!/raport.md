@@ -9,18 +9,20 @@
   - lan1 172.22.128.0/23
   - lan2 172.22.160.0/19
  
-  Chodzi o to że netmaska określa ile następnych adresów IP jest zarezerwowane dla danej sieci i od jakiego adresu sie może 
-  zaczynać. Tzn przy /23 jest to 510 więc pierwsza sieć będzie sobie od 172.22.128.0 i kolejne 510 adresów do 172.22.129.254 
-  (+ 1 specjalny na broadcast). 
+  Chodzi o to że netmaska określa ile następnych adresów IP jest zarezerwowane dla danej sieci i 
+  od jakiego adresu sie może zaczynać. Tzn przy /23 jest to 510 więc pierwsza sieć będzie sobie od 
+  172.22.128.0 i kolejne 510 adresów do 172.22.129.254 (+ 1 specjalny na broadcast). 
   
-  Przy tej samej netmasce można by było teraz brać od 172.22.130.0 ALE jest inna maska - /19 która daje 8190 adresów i inaczej 
-  sie dzieli. Od 172.22.128.0 idzie do 172.22.159.254. Niestety nie można sobie ustalić lan1 i 2 z tym samym adresem sieci i 
-  tylko innymi maskami bo jest konflikt przy wysyłaniu pakietów więc trzeba brać następne dostępne. Lan1 musi mieć /23 a lan2 
-  /19. Trzeba ogarnąć jakie są dostępne podziały przy /19. Od bazowego kończy sie na 159 potem od 160 do 191 i potem od 192 do 
-  223 i na koniec od 224 do 255.
+  Przy tej samej netmasce można by było teraz brać od 172.22.130.0 ALE jest inna maska - /19 
+  która daje 8190 adresów i inaczej sie dzieli. Od 172.22.128.0 idzie do 172.22.159.254. Niestety 
+  nie można sobie ustalić lan1 i 2 z tym samym adresem sieci i tylko innymi maskami bo jest konflikt 
+  przy wysyłaniu pakietów więc trzeba brać następne dostępne. Lan1 musi mieć /23 a lan2 /19. 
+  Trzeba ogarnąć jakie są dostępne podziały przy /19. Od bazowego kończy sie na 159 potem od 160 do 191 
+  i potem od 192 do 223 i na koniec od 224 do 255.
   
   Pewnie troche poplątałem ale jak wpiszecie ip bazowe i maske wybierzecie tu: 
-  https://www.calculator.net/ip-subnet-calculator.html i na range zobaczycie to myśle że połapiecie o co chodzi.
+  https://www.calculator.net/ip-subnet-calculator.html i na range zobaczycie to myśle że połapiecie 
+  o co chodzi.
 
 3. Dodanie adresów ip (najlepiej w /etc/network/interfaces)
   Tutaj wybieracie sobie jakie chcecie IP z zakresu ogarniętego w poprzednim punkcie
@@ -45,11 +47,12 @@
     up ip route add default via 172.22.160.1
     
 5. Włączenie forwardowania pakietów na PC0
-  echo 1 > /proc/sys/net/ipv4/ip_forward
+  echo 1 > /proc/sys/net/ipv4/ip_forward (jeśli robicie to, to trzeba przy każdym reboocie)
   lub na stałe
   odkomentować net.ipv4.ip_forward=1 w /etc/sysctl.d/99-sysctl.conf
   
 6. Dodanie reguły masquerade na PC0
+  (obydwie komendy trzeba przy każdym reboocie wpisywać)
   iptables -t nat -A POSTROUTING -s 172.22.128.0/23 -o enp0s3 -j MASQUERADE
   to samo dla -s 172.22.160.0/19
   
