@@ -2,7 +2,7 @@
 1. Ustalenie netmaski
   - Suma stanowisk we wszystkich labolatoriach (+2 planowane) to 420 więc maska to /23
   - Lub każda kondygnacja ma własną sieć z netmaską, na każdym piętrze 140 stanowisk więc /24
-  - W każdym labolatorium jest 35 stanowisk więc 
+  - W każdym labolatorium jest 35 stanowisk więc /26
   - Dla wifi min liczba urządzeń to 800 więc maska to /22
   
 2. Ustalenie sieci
@@ -13,6 +13,7 @@
   - piętro 1: 188.156.221.0/24
   - piętro 2: 188.156.222.0/24
   - wifi: 188.156.224.0/22
+  czy wifi ma być również na reszcie routerów?
   
   Router 0
   - 009
