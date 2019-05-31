@@ -14,6 +14,8 @@
   - piętro 2: 188.156.222.0/24
   - wifi: 188.156.224.0/22
   czy wifi ma być również na reszcie routerów?
+      urządzenia pod wifi
+        adresy z dhcp 188.156.224.1 - 188.156.227.254
   
   Router 0
   - 009
@@ -147,44 +149,70 @@
     czy automatycznie jest routing z wifi na internet
 
   PC1 Router0
-    up ip rotue add 188.156.220.1 dev eth0 (dev z PC1 router1 czy PC0 routerG czyli eth1)
-    czy z 10.0. ustawi automatycznie routing na 188.156
+    up ip rotue add default via 188.156.220.1
     
        PCty pod routerem0 w sali 009
-         up ip route add 10.0.9.1 dev eth0 (dev z PC podrzędnego, nie dev z routera? inaczej to do eth1 z routera)
-         czy ip route add {ip} via {ip}
+         up ip route add default via 10.0.9.1
        PCty pod routerem0 w sali 013
-         up ip route add 10.0.13.1 dev eth0
+         up ip route add default via 10.0.13.1
        PCty pod routerem0 w sali 014
-         up ip route add 10.0.14.1 dev eth0
+         up ip route add default via 10.0.14.1
        PCty pod routerem0 w sali 017
-         up ip route add 10.0.17.1 dev eth0
+         up ip route add default via 10.0.17.1
     
   PC2 Router1
-    up ip route add 188.156.221.1 dev eth0
+    up ip rotue add default via 188.156.221.1
     
        PCty pod routerem1 w sali 115
-         up ip route add 10.0.115.1 dev eth0 
+         up ip route add default via 10.0.115.1 
        PCty pod routerem1 w sali 116
-         up ip route add 10.0.116.1 dev eth0
+         up ip route add default via 10.0.116.1
        PCty pod routerem1 w sali 117
-         up ip route add 10.0.117.1 dev eth0
+         up ip route add default via 10.0.117.1
        PCty pod routerem1 w sali 122
-         up ip route add 10.0.122.1 dev eth0
+         up ip route add default via 10.0.122.1
   
   PC3 Router2
-    up ip route add 188.156.222.1 dev eth0
+    up ip rotue add default via 188.156.222.1
     
        PCty pod routerem2 w sali 201
-         up ip route add 10.0.201.1 dev eth0 
+         up ip route add default via 10.0.201.1 
        PCty pod routerem2 w sali 202
-         up ip route add 10.0.202.1 dev eth0
+         up ip route add default via 10.0.202.1
        PCty pod routerem2 w sali 203
-         up ip route add 10.0.203.1 dev eth0
+         up ip route add default via 10.0.203.1
        PCty pod routerem2 w sali 204
-         up ip route add 10.0.204.1 dev eth0
+         up ip route add default via 10.0.204.1
+        
+  urządzenia z wifi
+    up ip rotue add default via 188.156.224.1
          
 6. Włączenie forwardowania ip
+  PC z routerami
+  odkomentować net.ipv4.ip_forward=1 w /etc/sysctl.d/99-sysctl.conf
 
 7. Włączenie reguły masquerade
+  PC0 RouterG
+  iptables -t nat -A POSTROUTING -s 188.156.220.0/24 -o enp0s3 -j MASQUERADE
+                                 -s 188.156.221.0/24 -o enp0s3 -j MASQUERADE
+                                 -s 188.156.222.0/24 -o enp0s3 -j MASQUERADE
+                                 -s 188.156.224.0/24 -o enp0s3 -j MASQUERADE
+  
+  PC1 Router0
+  iptables -t nat -A POSTROUTING -s 10.0.9.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.13.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.14.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.17.0/26 -o enp0s3 -j MASQUERADE
+                                 
+  PC2 Router1
+  iptables -t nat -A POSTROUTING -s 10.0.115.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.116.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.117.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.122.0/26 -o enp0s3 -j MASQUERADE
+  
+  PC3 Router2
+  iptables -t nat -A POSTROUTING -s 10.0.201.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.202.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.203.0/26 -o enp0s3 -j MASQUERADE
+                                 -s 10.0.204.0/26 -o enp0s3 -j MASQUERADE
 ```
