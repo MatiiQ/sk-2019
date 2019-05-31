@@ -48,13 +48,17 @@
     
 5. Włączenie forwardowania pakietów na PC0
   echo 1 > /proc/sys/net/ipv4/ip_forward (jeśli robicie to, to trzeba przy każdym reboocie)
-  lub na stałe
+  żeby zapamiętało:
   odkomentować net.ipv4.ip_forward=1 w /etc/sysctl.d/99-sysctl.conf
   
 6. Dodanie reguły masquerade na PC0
   (obydwie komendy trzeba przy każdym reboocie wpisywać)
-  iptables -t nat -A POSTROUTING -s 172.22.128.0/23 -o enp0s3 -j MASQUERADE
-  to samo dla -s 172.22.160.0/19
+    iptables -t nat -A POSTROUTING -s 172.22.128.0/23 -o enp0s3 -j MASQUERADE
+    i to samo dla -s 172.22.160.0/19
+  żeby zapamiętało:
+    ipatables-save > /etc/iptables.up.rules
+    potem dodanie wpisu w /etc/network/interfaces enp0s3 po adresacji
+    post-up iptables-restore < /etc/iptables.up.rules
   
 7. Dodanie adresów dns do PC1 i PC2 (opcjonalne)
   /etc/resolv.conf
