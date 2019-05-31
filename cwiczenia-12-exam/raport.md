@@ -10,10 +10,11 @@
   188.156.220.160 to adres bazowy
   
   Router główny
-  - piętro 0: 188.156.220.0/24 (maska /24 czy tylko na router główny i na piętrze)
+  - piętro 0: 188.156.220.0/24 [maska /24 czy tylko na router główny i na piętrze]
   - piętro 1: 188.156.221.0/24
   - piętro 2: 188.156.222.0/24
   - wifi: 188.156.224.0/22
+    czy podłączać wifi do reszty routerów? [teraz nie można pingować]
   
   Router 0
   - 009
@@ -69,7 +70,7 @@
       address 188.156.220.2
       netmask 255.255.255.0
     eth1
-      address 10.0.9.1 (nie można 0, cała numeracja w salach sie sypie?)
+      address 10.0.9.1 [nie można 0, cała numeracja w salach sie sypie?]
       netmask 255.255.255.192
     eth2
       address 10.0.13.1
@@ -82,7 +83,7 @@
       netmask 255.255.255.192
           
         PCty w sali 009 pod Routerem0
-          adresy z dhcp 10.0.9.2 - 10.0.9.62 (przydziela kolejne ale nie zapamiętuje)
+          adresy z dhcp 10.0.9.2 - 10.0.9.62 [przydziela kolejne ale nie zapamiętuje]
         PCty w sali 013 pod Routerem0
           adresy z dhcp 10.0.13.2 - 10.0.13.62
         PCty w sali 014 pod Routerem0
@@ -250,8 +251,7 @@
                  -s 10.0.203.0/26 -o enp0s3 -j MASQUERADE
                  -s 10.0.204.0/26 -o enp0s3 -j MASQUERADE
   
-  dodanie wpisu w /etc/network/interfaces
-  enp0s3 po adresacji
+  dodanie wpisu w /etc/network/interfaces (enp0s3 po adresacji)
     post-up iptables-restore < /etc/iptables.up.rules
     
 ```
