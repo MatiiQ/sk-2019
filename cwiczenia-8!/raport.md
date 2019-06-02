@@ -1,4 +1,4 @@
-![](Diagram1.png)
+![](Diagram8.png)
 ```
 1. Ustalenie netmaski
   - dla 500 urządzeń 255.255.254.0 czyli /23
