@@ -1,3 +1,4 @@
+![](Diagram12.png)
 ```
 1. Ustalenie netmaski
   - Suma stanowisk we wszystkich labolatoriach (+2 planowane) to 420 więc maska to /23
