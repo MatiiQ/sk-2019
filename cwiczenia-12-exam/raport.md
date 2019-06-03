@@ -1,21 +1,19 @@
 ![](Diagram12.png)
 ```
 1. Ustalenie netmaski
-  - Suma stanowisk we wszystkich labolatoriach (+2 planowane) to 420 więc maska to /23
-  - Lub każda kondygnacja ma własną sieć z netmaską, na każdym piętrze 140 stanowisk więc /24
-  - Lub do routera głównego na daną sieć podłączone są tylko 2 PC - główny i na piętrze /30
-  - W każdym labolatorium jest 35 stanowisk więc /26
-  - Dla wifi min liczba urządzeń to 800 więc maska to /22
+  - Sieci z routera głównego i routerów na piętrach potrzebują 2 adresów 
+    więc maska dla bezpieczeństwa /29 255.255.255.248
+  - W każdym labolatorium jest 35 stanowisk więc /26 255.255.255.192
+  - Dla wifi min liczba urządzeń to 800 więc maska to /22 255.255.252.0
   
 2. Ustalenie sieci
   188.156.220.160 to adres bazowy
   
   Router główny
-  - piętro 0: 188.156.220.0/24 [maska /24 czy tylko na router główny i na piętrze]
-  - piętro 1: 188.156.221.0/24
-  - piętro 2: 188.156.222.0/24
-  - wifi: 188.156.224.0/22
-    czy podłączać wifi do reszty routerów? [teraz nie można pingować]
+  - piętro 0: 188.156.220.0/29
+  - piętro 1: 188.156.221.0/29
+  - piętro 2: 188.156.222.0/29
+  - wifi: 188.156.224.0/22 [teraz nie można pingować]
   
   Router 0
   - 009
@@ -49,17 +47,17 @@
     
 3. Dodanie adresów IP
   PC0 RouterG
-    eth0: internet
-    eth1 (dla piętra 0)
+    enp0s3: internet
+    enp0s8 (dla piętra 0)
       address 188.156.220.1
-      netmask 255.255.255.0
-    eth2 (dla piętra 1)
+      netmask 255.255.255.248
+    enp0s9 (dla piętra 1)
       address 188.156.221.1
-      netmask 255.255.255.0
-    eth3 (dla piętra 2)
+      netmask 255.255.255.248
+    enp0s10 (dla piętra 2)
       address 188.156.222.1
-      netmask 255.255.255.0
-    eth4 (dla wifi)
+      netmask 255.255.255.248
+    enp0s11 (dla wifi)
       address 188.156.224.1
       netmask 255.255.252.0
         
@@ -67,82 +65,82 @@
           adresy z dhcp 188.156.224.2 - 188.156.227.254
       
   PC1 Router0
-    eth0
+    enp0s3
       address 188.156.220.2
-      netmask 255.255.255.0
-    eth1
-      address 10.0.9.1 [nie można 0, cała numeracja w salach sie sypie?]
+      netmask 255.255.255.248
+    enp0s8
+      address 10.0.9.62
       netmask 255.255.255.192
-    eth2
-      address 10.0.13.1
+    enp0s9
+      address 10.0.13.62
       netmask 255.255.255.192
-    eth3
-      address 10.0.14.1
+    enp0s10
+      address 10.0.14.62
       netmask 255.255.255.192
-    eth4
-      address 10.0.17.1
+    enp0s11
+      address 10.0.17.62
       netmask 255.255.255.192
           
         PCty w sali 009 pod Routerem0
-          adresy z dhcp 10.0.9.2 - 10.0.9.62 [przydziela kolejne ale nie zapamiętuje]
+          adresy z dhcp 10.0.9.1 - 10.0.9.61 [przydziela kolejne ale nie zapamiętuje]
         PCty w sali 013 pod Routerem0
-          adresy z dhcp 10.0.13.2 - 10.0.13.62
+          adresy z dhcp 10.0.13.1 - 10.0.13.61
         PCty w sali 014 pod Routerem0
-          adresy z dhcp 10.0.14.2 - 10.0.14.62
+          adresy z dhcp 10.0.14.1 - 10.0.14.61
         PCty w sali 017 pod Routerem0
-          adresy z dhcp 10.0.17.2 - 10.0.17.62
+          adresy z dhcp 10.0.17.1 - 10.0.17.61
 
   PC2 Router1
-    eth0
+    enp0s3
       address 188.156.221.2
-      netmask 255.255.255.0
-    eth1
-      address 10.0.115.1
+      netmask 255.255.255.248
+    enp0s8
+      address 10.0.115.62
       netmask 255.255.255.192
-    eth2
-      address 10.0.116.1
+    enp0s9
+      address 10.0.116.62
       netmask 255.255.255.192
-    eth3
-      address 10.0.117.1
+    enp0s10
+      address 10.0.117.62
       netmask 255.255.255.192
-    eth4
-      address 10.0.122.1
+    enp0s11
+      address 10.0.122.62
       netmask 255.255.255.192
       
         PCty w sali 115 pod Routerem1
-          adresy z dhcp 10.0.115.2 - 10.0.115.62
+          adresy z dhcp 10.0.115.1 - 10.0.115.61
         PCty w sali 116 pod Routerem1
-          adresy z dhcp 10.0.116.2 - 10.0.116.62
+          adresy z dhcp 10.0.116.1 - 10.0.116.61
         PCty w sali 117 pod Routerem1
-          adresy z dhcp 10.0.117.2 - 10.0.117.62
+          adresy z dhcp 10.0.117.1 - 10.0.117.61
         PCty w sali 122 pod Routerem1
-          adresy z dhcp 10.0.122.2 - 10.0.122.62
+          adresy z dhcp 10.0.122.1 - 10.0.122.61
       
   PC3 Router2
-    eth0
+    enp0s3
       address 188.156.222.2
-      netmask 255.255.255.0
-    eth1
-      address 10.0.201.1
+      netmask 255.255.255.248
+    enp0s8
+      address 10.0.201.62
       netmask 255.255.255.192
-    eth2
-      address 10.0.202.1
+    enp0s9
+      address 10.0.202.62
       netmask 255.255.255.192
-    eth3
-      address 10.0.203.1
+    enp0s10
+      address 10.0.203.62
       netmask 255.255.255.192
-    eth4
-      address 10.0.204.1
+    enp0s11
+      address 10.0.204.62
       netmask 255.255.255.192
         
         PCty w sali 201 pod Routerem2
-          adresy z dhcp 10.0.201.2 - 10.0.201.62
+          adresy z dhcp 10.0.201.1 - 10.0.201.61
         PCty w sali 202 pod Routerem2
-          adresy z dhcp 10.0.202.2 - 10.0.202.62
+          adresy z dhcp 10.0.202.1 - 10.0.202.61
         PCty w sali 203 pod Routerem2
-          adresy z dhcp 10.0.203.2 - 10.0.203.62
+          adresy z dhcp 10.0.203.1 - 10.0.203.61
         PCty w sali 204 pod Routerem2
-          adresy z dhcp 10.0.204.2 - 10.0.204.62
+          adresy z dhcp 10.0.204.1 - 10.0.204.61
             
 4. Uruchomienie dhcp + wpisanie dns
   PC0 RouterG
@@ -165,8 +163,8 @@
         dopisać interfejs INTERFACESv4="enp0s8 enp0s9 enp0s10 enp0s11"
       nano /etc/dhcp/dhcpd.conf - dopisać konfiguracje sieci :
         subnet 10.0.9|13|14|17.0 netmask 255.255.255.192 {
-          range 10.0.9|13|14|17.2 10.0.9|13|14|17.62;
-          option routers 10.0.9|13|14|17.1;
+          range 10.0.9|13|14|17.1 10.0.9|13|14|17.61;
+          option routers 10.0.9|13|14|17.62;
           option domain-name-servers 1.1.1.1, 1.0.0.1;
         }
       systemctl restart isc-dhcp-server
@@ -178,8 +176,8 @@
         dopisać interfejs INTERFACESv4="enp0s8 enp0s9 enp0s10 enp0s11"
       nano /etc/dhcp/dhcpd.conf - dopisać konfiguracje sieci :
         subnet 10.0.115|116|117|122.0 netmask 255.255.255.192 {
-          range 10.0.115|116|117|122.2 10.0.115|116|117|122.62;
-          option routers 10.0.115|116|117|122.1;
+          range 10.0.115|116|117|122.1 10.0.115|116|117|122.61;
+          option routers 10.0.115|116|117|122.62;
           option domain-name-servers 1.1.1.1, 1.0.0.1;
         }
       systemctl restart isc-dhcp-server
@@ -191,8 +189,8 @@
         dopisać interfejs INTERFACESv4="enp0s8 enp0s9 enp0s10 enp0s11"
       nano /etc/dhcp/dhcpd.conf - dopisać konfiguracje sieci :
         subnet 10.0.201|202|203|204.0 netmask 255.255.255.192 {
-          range 10.0.201|202|203|204.2 10.0.201|202|203|204.62;
-          option routers 10.0.201|202|203|204.1;
+          range 10.0.201|202|203|204.1 10.0.201|202|203|204.61;
+          option routers 10.0.201|202|203|204.62;
           option domain-name-servers 1.1.1.1, 1.0.0.1;
         }
       systemctl restart isc-dhcp-server
@@ -202,19 +200,19 @@
     up ip rotue add default via 188.156.220.1
     
        PCty pod routerem0 w sali 009|013|014|017 (już w dhcp server)
-         up ip route add default via 10.0.9|13|14|17.1
+         up ip route add default via 10.0.9|13|14|17.62
     
   PC2 Router1
     up ip rotue add default via 188.156.221.1
     
        PCty pod routerem1 w sali 115|116|117|122 (już w dhcp server)
-         up ip route add default via 10.0.115|116|117|122.1 
+         up ip route add default via 10.0.115|116|117|122.62 
   
   PC3 Router2
     up ip rotue add default via 188.156.222.1
     
        PCty pod routerem1 w sali 201|202|203|204 (już w dhcp server)
-         up ip route add default via 10.0.201|202|203|204.1 
+         up ip route add default via 10.0.201|202|203|204.62
         
   urządzenia z wifi (już w dhcp server)
     up ip rotue add default via 188.156.224.1
