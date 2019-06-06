@@ -13,7 +13,7 @@
   - piętro 0: 188.156.220.0/29
   - piętro 1: 188.156.221.0/29
   - piętro 2: 188.156.222.0/29
-  - wifi: 188.156.224.0/22 [teraz nie można pingować]
+  - wifi: 188.156.224.0/22
   
   Router 0
   - 009
@@ -82,7 +82,7 @@
       netmask 255.255.255.192
           
         PCty w sali 009 pod Routerem0
-          adresy z dhcp 10.0.9.1 - 10.0.9.61 [przydziela kolejne ale nie zapamiętuje]
+          adresy z dhcp 10.0.9.1 - 10.0.9.61
         PCty w sali 013 pod Routerem0
           adresy z dhcp 10.0.13.1 - 10.0.13.61
         PCty w sali 014 pod Routerem0
@@ -222,35 +222,35 @@
   odkomentować net.ipv4.ip_forward=1 w /etc/sysctl.d/99-sysctl.conf
 
 7. Włączenie reguły masquerade
-  ipatables-save > /etc/iptables.up.rules (utworzenie pliku)
-  w pliku /etc/iptables.up.rules dodać w *nat przed COMMIT 
-  (lub normalnie z iptables i potem zasavować)
   
   PC0 RouterG
-  -A POSTROUTING -s 188.156.220.0/24 -o enp0s3 -j MASQUERADE
-                 -s 188.156.221.0/24 -o enp0s3 -j MASQUERADE
-                 -s 188.156.222.0/24 -o enp0s3 -j MASQUERADE
-                 -s 188.156.224.0/24 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.220.0/24 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.221.0/24 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.222.0/24 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.224.0/24 -o enp0s3 -j MASQUERADE
   
   PC1 Router0
   iptables -t nat -A POSTROUTING -s 10.0.9.0/26 -o enp0s3 -j MASQUERADE
-                                 -s 10.0.13.0/26 -o enp0s3 -j MASQUERADE
-                                 -s 10.0.14.0/26 -o enp0s3 -j MASQUERADE
-                                 -s 10.0.17.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.13.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.14.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.17.0/26 -o enp0s3 -j MASQUERADE
                                  
   PC2 Router1
-  -A POSTROUTING -s 10.0.115.0/26 -o enp0s3 -j MASQUERADE
-                 -s 10.0.116.0/26 -o enp0s3 -j MASQUERADE
-                 -s 10.0.117.0/26 -o enp0s3 -j MASQUERADE
-                 -s 10.0.122.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.115.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.116.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.117.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.122.0/26 -o enp0s3 -j MASQUERADE
   
   PC3 Router2
-  -A POSTROUTING -s 10.0.201.0/26 -o enp0s3 -j MASQUERADE
-                 -s 10.0.202.0/26 -o enp0s3 -j MASQUERADE
-                 -s 10.0.203.0/26 -o enp0s3 -j MASQUERADE
-                 -s 10.0.204.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.201.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.202.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.203.0/26 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 10.0.204.0/26 -o enp0s3 -j MASQUERADE
   
-  dodanie wpisu w /etc/network/interfaces (enp0s3 po adresacji)
-    post-up iptables-restore < /etc/iptables.up.rules
+  zapisanie reguł:
+    ipatables-save > /etc/iptables.up.rules
+    
+    dodanie wpisu w /etc/network/interfaces
+      post-up iptables-restore < /etc/iptables.up.rules
     
 ```
