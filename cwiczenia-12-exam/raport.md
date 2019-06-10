@@ -224,10 +224,10 @@
 7. Włączenie reguły masquerade
   
   PC0 RouterG
-  iptables -t nat -A POSTROUTING -s 188.156.220.0/24 -o enp0s3 -j MASQUERADE
-  iptables -t nat -A POSTROUTING -s 188.156.221.0/24 -o enp0s3 -j MASQUERADE
-  iptables -t nat -A POSTROUTING -s 188.156.222.0/24 -o enp0s3 -j MASQUERADE
-  iptables -t nat -A POSTROUTING -s 188.156.224.0/24 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.220.0/29 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.221.0/29 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.222.0/29 -o enp0s3 -j MASQUERADE
+  iptables -t nat -A POSTROUTING -s 188.156.224.0/22 -o enp0s3 -j MASQUERADE
   
   PC1 Router0
   iptables -t nat -A POSTROUTING -s 10.0.9.0/26 -o enp0s3 -j MASQUERADE
